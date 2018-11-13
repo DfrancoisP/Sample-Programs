@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp6
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int inputint;
+            while (true)
+            {
+                Console.WriteLine("please enter a number? ");
+                string inputstr = Console.ReadLine();
+                if (Int32.TryParse(inputstr, out inputint)) {
+                    break;
+                }
+                /*
+                try
+                {
+                    inputint = Int32.Parse(inputstr);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("exception caught with Int32.Parse()");
+                    continue;
+                }
+                //*/
+            }
+            Console.WriteLine("inputint=" + inputint);
+            Console.ReadLine();
+        }
+    }
+}
