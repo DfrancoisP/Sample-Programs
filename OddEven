@@ -1,0 +1,70 @@
+// sample program to demonstrate 3-way operator and modulus operator.
+// Also factors necessary user input out into two functions getint() & getYN().
+// written by David and Dan on 20 Nov. 2018
+
+using System;
+
+//==========
+class oddeven {
+
+    //----------
+    static void Main(string[] args) {
+
+        // as usual, started with bare-bones sample program
+        Console.WriteLine("Hello World!");
+
+        // David provided this functional logic
+        int number = 23;
+        bool even = number % 2 == 0 ? true : false;
+        Console.WriteLine("{0} is even? {1}", number, even);
+        Console.WriteLine();
+
+        // The reported problem came about because of a misconception
+        // about how Console.ReadLine() and Console.Read() function.
+        // Console.Read() does not read in an integer.
+        // Trying to do so will result in unpredictiple results
+        // (which is what we were seeing.)
+        while(true) {
+            number=getint("Enter an integer? ");
+            even = number % 2 == 0 ? true : false;
+            Console.WriteLine("{0} is even? {1}", number, even);
+            Console.WriteLine();
+        
+            if(!getYN("Again (y|n)? ")) {
+                break;
+            }
+        }
+
+        Console.WriteLine("That's all folks!");
+        Console.ReadLine();
+    } // end function Main()
+
+    //----------
+    static int getint(string prompt) {
+        int number=0;
+        while(true) {
+            Console.Write(prompt);
+            string userinput=Console.ReadLine();
+            if(Int32.TryParse(userinput,out number)) {
+                return number;
+            }
+            Console.WriteLine("Invalid input... Try again!\n");
+        }
+    } // end function getint()
+
+    //----------
+    static bool getYN(string prompt) {
+        while(true) {
+            Console.Write(prompt);
+            string userinput=Console.ReadLine();
+            if(userinput.ToLower()=="y") {
+                return true;
+            } else if(userinput.ToLower()=="n") {
+                return false;
+            }
+            Console.WriteLine("Invalid input... Try again!\n");
+        }
+    } // end function getYN()
+
+} // end class oddeven
+
